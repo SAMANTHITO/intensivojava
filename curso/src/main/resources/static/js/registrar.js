@@ -6,7 +6,7 @@ async function registrarUsuarios(){
       let datos = {};
       datos.nombre = document.getElementById('txtNombre').value;
       datos.apellido = document.getElementById('txtApellido').value;
-      datos.correo = document.getElementById('txtEmail').value;
+      datos.email = document.getElementById('txtCorreo').value;
       datos.password = document.getElementById('txtPassword').value;
 
       let repetirPassword = document.getElementById('txtRepetirPassword').value;
@@ -23,5 +23,4 @@ async function registrarUsuarios(){
             },
             body: JSON.stringify(datos)
       });
-      const usuarios = await request.json();
 }

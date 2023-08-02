@@ -21,7 +21,6 @@ public class UsuarioDaoImp implements UsuarioDao{
         return entityManager.createQuery(query).getResultList();
 
     }
-
     @Override
     public void eliminar(Long id) {
         Usuario usuario = entityManager.find(Usuario.class,id);
@@ -31,5 +30,16 @@ public class UsuarioDaoImp implements UsuarioDao{
     @Override
     public void registrar(Usuario usuario) {
         entityManager.merge(usuario);
+    }
+
+    @Override
+    public boolean verificarCredenciales(Usuario usuario) {
+
+        String query = "FROM Usuario where email = :email AND password = :password";
+        List<Usuario> lista = entityManager.createQuery(query)
+                 .setParameter("email", usuario.getEmail())
+                 .setParameter("password", usuario.getPassword())
+                .getResultList();
+        return !lista.isEmpty();
     }
 }
